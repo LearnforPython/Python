@@ -3,6 +3,7 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import json
 
 
 headers = {
@@ -28,5 +29,8 @@ def is_good_respoonse(resp):
 def log_error(e):
     print(e)
 
-raw_html = simple_get('https://www.ele.me/place/wtw3985r58m2?latitude=31.202375&longitude=121.359601',headers)
-print(raw_html)
+raw_html = simple_get('https://www.ele.me/restapi/shopping/v2/menu?restaurant_id=19502&terminal=web',headers)
+
+json_data = json.loads(raw_html.text)
+
+print(json_data)
