@@ -31,6 +31,15 @@ def log_error(e):
 
 raw_html = simple_get('https://www.ele.me/restapi/shopping/v2/menu?restaurant_id=19502&terminal=web',headers)
 
-json_data = json.loads(raw_html.text)
+json_array = json.loads(raw_html.text)
 
-print(json_data)
+
+for info in json_array:
+    foodarray = info['foods']
+    for foodinfo in foodarray:
+        specfoods = foodinfo['specfoods']
+        for specfood in specfoods:
+            fooddetail = str(specfood['name']) + " : " + str(specfood['price']) + ", " + str(specfood['specs'])
+            print(fooddetail)
+
+
